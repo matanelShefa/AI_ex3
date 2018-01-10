@@ -21,6 +21,13 @@ public class Point
 	}
 
 	/**
+	 * Override of the toString function.
+	 * @return the string to print.
+	 */
+	@Override
+	public String toString() { return "(" + m_xVal + ", " + m_yVal + ")"; }
+
+	/**
 	 * Getter.
 	 * @return The x value.
 	 */
