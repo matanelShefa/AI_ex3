@@ -6,20 +6,20 @@
 public class Point
 {
 	// Members
-	private final int m_xVal;
-	private final int m_yVal;
-	private int m_clusterID;
+	private final double m_xVal;
+	private final double m_yVal;
+	private Cluster m_cluster;
 
 	/**
 	 * Constructor
 	 * @param xVal The x value.
 	 * @param yVal The y value.
 	 */
-	public Point(int xVal, int yVal, int cluster)
+	public Point(double xVal, double yVal, Cluster cluster)
 	{
 		m_xVal = xVal;
 		m_yVal = yVal;
-		m_clusterID = cluster;
+		m_cluster = cluster;
 	}
 
 	/**
@@ -27,29 +27,29 @@ public class Point
 	 * @return the string to print.
 	 */
 	@Override
-	public String toString() { return "(" + m_xVal + ", " + m_yVal + ", " + m_clusterID + ")"; }
+	public String toString() { return "(" + m_xVal + ", " + m_yVal + ", " + m_cluster.getClusterID() + ")"; }
 
 	/**
 	 * Setter.
 	 * @param newCluster the new cluster to set.
 	 */
-	public void setCluster(int newCluster) { m_clusterID = newCluster; }
+	public void setCluster(Cluster newCluster) { m_cluster = newCluster; }
 
 	/**
 	 * Getter.
 	 * @return The x value.
 	 */
-	public int getXVal() { return m_xVal; }
+	public double getXVal() { return m_xVal; }
 
 	/**
 	 * Getter.
 	 * @return The y value.
 	 */
-	public int getYVal() { return m_yVal; }
+	public double getYVal() { return m_yVal; }
 
 	/**
 	 * Getter.
 	 * @return The cluster number.
 	 */
-	public int getCluster() { return m_clusterID; }
+	public int getClusterID() { return m_cluster.getClusterID(); }
 }

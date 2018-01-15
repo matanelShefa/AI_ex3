@@ -6,9 +6,6 @@ import java.util.DoubleSummaryStatistics;
  */
 public class SingleLink extends Classifier
 {
-	// Final
-	private static final int TWO = 2;
-
 	/**
 	 * Constructor.
 	 * @param pointsList the list of the point to classify.
@@ -25,6 +22,8 @@ public class SingleLink extends Classifier
 	 * Classifies the points into 'clusterNumber' number of clusters.
 	 * @param clusterNumber the cluster numbers.
 	 */
+	/*
+	@Override
 	public void classify(int clusterNumber)
 	{
 		Cluster cluster1ToUnify = null;
@@ -82,6 +81,7 @@ public class SingleLink extends Classifier
 		}
 		printToOutput(result);
 	}
+	*/
 
 	/**
 	 * The distance function of the single link algorithm. Chooses the minimum distance
@@ -90,6 +90,7 @@ public class SingleLink extends Classifier
 	 * @param cluster2 the second cluster
 	 * @return the distance between the clusters.
 	 */
+	@Override
 	public double distance(Cluster cluster1, Cluster cluster2)
 	{
 		double distance = Double.MAX_VALUE;

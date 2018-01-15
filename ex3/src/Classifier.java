@@ -10,8 +10,9 @@ import java.util.ArrayList;
  */
 public abstract class Classifier implements Algorithm
 {
-	// Final
+	// Finals
 	private static final String OUTPUT_FILE = "output.txt";
+	protected static final int TWO = 2;
 
 	// Members
 	protected ArrayList<Point> m_pointsList;
@@ -20,23 +21,60 @@ public abstract class Classifier implements Algorithm
 
 	public void classify()
 	{
-		double minDistance = Double.MAX_VALUE;
-		double distance = 0;
+		Cluster cluster1ToUnify = null;
+		Cluster cluster2ToUnify = null;
+		double distance;
+		double minDistance;
+
+		int i = 0;
 		for (Point point : m_pointsList)
 		{
-			for (Point otherPoint : m_pointsList)
-			{
-				if ((point != otherPoint))
-				{
-					//distance = distance(point, otherPoint); //TODO
+			Cluster cluster = new Cluster(++i);
+			cluster.addPoint(point);
+			m_clustersList.add(cluster);
+		}
 
-					if (distance < minDistance)
+		while(m_clustersList.size() > m_clustersNumber)
+		{
+			distance = Double.MAX_VALUE;
+			minDistance = Double.MAX_VALUE;
+
+			for (Cluster cluster1 : m_clustersList)
+			{
+				for (Cluster cluster2 : m_clustersList)
+				{
+					if (cluster1.getClusterID() != cluster2.getClusterID())
 					{
-						minDistance = distance;
+						distance = distance(cluster1, cluster2);
+						System.out.println("distace between cluster " + cluster1.getClusterID() + "& cluster " + cluster2.getClusterID() + " is: " + distance);
+						System.out.println("mindistace is: " + minDistance);
+						if (distance < minDistance)
+						{
+							minDistance = distance;
+							cluster1ToUnify = cluster1;
+							cluster2ToUnify = cluster2;
+						}
 					}
 				}
 			}
+
+			System.out.println(distance);
+			for (Point point : cluster2ToUnify.getPointsList())
+			{
+				cluster1ToUnify.addPoint(point);
+			}
+
+			m_clustersList.remove(cluster2ToUnify);
+
+			System.out.println(m_pointsList);
 		}
+
+		String result = new String();
+		for (Point point : m_pointsList)
+		{
+			result += point.getCluster() + "\n";
+		}
+		printToOutput(result);
 	}
 	/**
 	 * Print the solution string to the output file.

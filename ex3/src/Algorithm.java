@@ -6,10 +6,9 @@
 public interface Algorithm
 {
 	/**
-	 * The classify method. Classifies the points into 'clusterNumber' number of clusters.
-	 * @param clusterNumber the cluster numebers.
+	 * The classify method. Classifies the points into a number of clusters.
 	 */
-	void classify(int clusterNumber);
+	void classify();
 
 	/**
 	 * The distance method. Finds the distance between the clusters.

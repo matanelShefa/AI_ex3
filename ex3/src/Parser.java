@@ -40,7 +40,7 @@ public class Parser
 			{
 				clusterNumber++;
 				String[] values = fileCurrentLine.split(",");
-				point = new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]), clusterNumber);
+				point = new Point(Double.parseDouble(values[0]), Double.parseDouble(values[1]), new Cluster(clusterNumber));
 				m_pointsList.add(point);
 			}
 
@@ -68,8 +68,7 @@ public class Parser
 		}
 		if (m_classifier.equals(AVERAGE_LINK))
 		{
-			//TODO
-			//return new AverageLink(m_pointsList, m_clustersNumber);
+			return new AverageLink(m_pointsList, m_clustersNumber);
 		}
 		return null;
 	}

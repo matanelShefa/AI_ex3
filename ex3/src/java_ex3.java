@@ -5,7 +5,7 @@
  */
 public class java_ex3
 {
-	private static final String INPUT_FILE = "input.txt";
+	private static final String INPUT_FILE = "input3.txt";
 
 	/**
 	 * The main function of the program.
@@ -16,6 +16,6 @@ public class java_ex3
 		// Read the input from the file.
 		Parser parser = new Parser(INPUT_FILE);
 		// Run the algorithm.
-		parser.getAlgorithm().classify(parser.getClustersNumber());
+		parser.getAlgorithm().classify();
 	}
 }

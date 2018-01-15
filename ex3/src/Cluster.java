@@ -52,4 +52,10 @@ public class Cluster
  	 * @return the cluster ID
 	 */
 	public int getClusterID() { return m_clusterID; }
+
+	/**
+	 * Setter.
+	 * @param newID the new ID to set.
+	 */
+	public void setClusterID(int newID) { m_clusterID = newID; }
 }
