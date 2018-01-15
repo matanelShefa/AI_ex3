@@ -5,8 +5,19 @@
  */
 public interface Algorithm
 {
-	// The search method. Searches for the goal from the start in the matrix.
-	void search();
+	/**
+	 * The classify method. Classifies the points into 'clusterNumber' number of clusters.
+	 * @param clusterNumber the cluster numebers.
+	 */
+	void classify(int clusterNumber);
+
+	/**
+	 * The distance method. Finds the distance between the clusters.
+	 * @param cluster1 the first cluster
+	 * @param cluster2 the second cluster
+	 * @return the distance between the clusters.
+	 */
+	double distance(Cluster cluster1, Cluster cluster2);
 
 	/**
 	 * Print the solution string to the output file.

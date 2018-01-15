@@ -10,9 +10,13 @@ import java.util.ArrayList;
  */
 public class Parser
 {
+	// Finals
+	private static final String SINGLE_LINK = "single link";
+	private static final String AVERAGE_LINK = "average link";
+
 	// Members
 	private int m_clustersNumber;
-	private String m_algorithm;
+	private String m_classifier;
 	private ArrayList<Point> m_pointsList;
 
 	/**
@@ -26,19 +30,20 @@ public class Parser
 		{
 			Point point;
 			String fileCurrentLine;
+			int clusterNumber = 0;
 			m_pointsList = new ArrayList<>();
-			m_algorithm = reader.readLine();
+			m_classifier = reader.readLine();
 			m_clustersNumber = Integer.parseInt(reader.readLine());
 
 			// Generate the type string.
 			while ((fileCurrentLine = reader.readLine()) != null)
 			{
+				clusterNumber++;
 				String[] values = fileCurrentLine.split(",");
-				point = new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+				point = new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]), clusterNumber);
 				m_pointsList.add(point);
 			}
 
-			System.out.println("Points list:\n" + m_pointsList);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -55,7 +60,19 @@ public class Parser
 	 * Getter.
 	 * @return The algorithm.
 	 */
-	public String getAlgorithm() { return m_algorithm; }
+	public Classifier getAlgorithm()
+	{
+		if (m_classifier.equals(SINGLE_LINK))
+		{
+			return new SingleLink(m_pointsList, m_clustersNumber);
+		}
+		if (m_classifier.equals(AVERAGE_LINK))
+		{
+			//TODO
+			//return new AverageLink(m_pointsList, m_clustersNumber);
+		}
+		return null;
+	}
 
 	/**
 	 * Getter.
